@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>To-Do List</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+
+  <div class="todo-list">
+
+    <div>
+      <input type="text" id="newTask" placeholder="Add a new task">
+      <button onclick="addTask()">Add</button>
+    </div>
+    <div id="tasks">
+
+    </div>
+  </div>
+
+  <script>
+    function addTask() {
+      const newTaskInput = document.getElementById("newTask");
+      const taskText = newTaskInput.value.trim();
+
+      if (taskText !== "") {
+        const tasksContainer = document.getElementById("tasks");
+        const taskDiv = document.createElement("div");
+        taskDiv.className = "task";
+        taskDiv.innerHTML = `
+          <input type="checkbox" class="checkbox">
+          <span class="task-text">${taskText}</span>
+          <button class="delete-button" onclick="deleteTask(this)">
+          x</button>
+        `;
+        tasksContainer.appendChild(taskDiv);
+        newTaskInput.value = "";
+      }
+    }
+
+    function deleteTask(button) {
+      const taskDiv = button.parentElement;
+      taskDiv.remove();
+    }
+  </script>
+</body>
+
+</html>
